@@ -19,6 +19,7 @@ import (
 
 func Down(c *gin.Context) {
 	rawPath := c.Request.Context().Value(conf.PathKey).(string)
+	common.LogMediaAccessAuto(c, rawPath)
 	filename := stdpath.Base(rawPath)
 	storage, err := fs.GetStorage(rawPath, &fs.GetStoragesArgs{})
 	if err != nil {
@@ -45,6 +46,7 @@ func Down(c *gin.Context) {
 
 func Proxy(c *gin.Context) {
 	rawPath := c.Request.Context().Value(conf.PathKey).(string)
+	common.LogMediaAccessAuto(c, rawPath)
 	filename := stdpath.Base(rawPath)
 	storage, err := fs.GetStorage(rawPath, &fs.GetStoragesArgs{})
 	if err != nil {

@@ -192,6 +192,7 @@ func SharingDown(c *gin.Context) {
 	sid := c.Request.Context().Value(conf.SharingIDKey).(string)
 	path := c.Request.Context().Value(conf.PathKey).(string)
 	path = utils.FixAndCleanPath(path)
+	common.LogMediaAccess(c, path)
 	pwd := c.Query("pwd")
 	s, err := op.GetSharingById(sid)
 	if err == nil {

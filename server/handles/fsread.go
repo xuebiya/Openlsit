@@ -286,6 +286,7 @@ func FsGet(c *gin.Context, req *FsGetReq, user *model.User) {
 		common.ErrorResp(c, err, 403)
 		return
 	}
+	common.LogMediaAccess(c, reqPath)
 	meta, err := op.GetNearestMeta(reqPath)
 	if err != nil && !errors.Is(errors.Cause(err), errs.MetaNotFound) {
 		common.ErrorResp(c, err, 500, true)
